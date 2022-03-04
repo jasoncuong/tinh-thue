@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('https://wallpaperaccess.com/full/3781373.jpg');
+            background-repeat: no-repeat;
+            background-size:cover;
+        }
+
+        .container{
+            background-color: #ffffffaf;
+            border-radius: 7px;
+            backdrop-filter: blur(30px);
+            width: 500px;
+        }
+
+        .task{
+            background-color: #f3f5f6c0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+            padding: 0px;
+            height: 30px;
+            border-radius: 7px 7px 0px 0px;
+        }
+
+        .dot{
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .circle{
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            margin-left: 5px;
+        }
+        .red{
+            background-color: #FF6F6F;
+        }
+
+        .yellow{
+            background-color: #F7DA87;
+        }
+        .green{
+            background-color:  #B0DDBE;
+        }
+
+        .task .title{
+            margin-left: 5px;
+        }
+
+        .empty{
+            width: 45px;
+        }
+
+        .main{
+            padding: 10px;
+            border-radius: 0px 0px 5px 5px;
+        }
+
+        .input input[type=text]{
+            border: 1px solid #e4e4e4;
+            outline: none;
+            background-color: #F3F5F6;
+            padding: 2px;
+            border-radius: 3px;
+        }
+
+        .input input[type=button]{
+            border: 1px solid #0eb7ff;
+            outline: none;
+            background-color: #00B0FC;
+            padding: 2px;
+            color: #fff;
+            border-radius: 3px;
+        }
+
+        .output{
+            background-color: #ffffff57;
+            border: 1px solid #ffffff4b;
+            margin-top: 10px;
+            border-radius: 3px;
+        }
+        .output p{
+            padding: 0px 5px 0px 5px;
+            margin: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="task">
+            <!-- cai nay de cho dep thoi hjhj -->
+            <div class="dot">
+                <div class="circle red"></div>
+                <div class="circle yellow"></div>
+                <div class="circle green"></div>
+            </div>
+            
+            <p class="title">Tính thuế</p>
+            <div class="empty"></div>
+        </div>
+        <div class="main">
+            <div class="input">
+                <input type="text" id="luong_vao" placeholder="Nhập lương tháng (Triệu).">
+                <input type="button" value="Tính thuế thu nhập" onclick="tinh_thue()">  
+            </div>
+            <div class="output">
+                <p id="ket_qua">Kết quả</p>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function tinh_thue(){
+        let luong_vao = parseInt(document.getElementById('luong_vao').value);
+        let thue = 0;
+        let luong_rong = 0;
+        if(luong_vao < 7){
+            thue = luong_vao * 0.1;
+            luong_rong = luong_vao - thue;
+        }
+        if(luong_vao >= 7 && luong_vao < 15){
+            thue = luong_vao * 0.2;
+            luong_rong = luong_vao - thue;
+        }
+        if(luong_vao >= 15){
+            thue = luong_vao * 0.3;
+            luong_rong = luong_vao - thue;
+        }
+        thue = thue.toFixed(2);
+        luong_rong = luong_rong.toFixed(2);
+        document.getElementById('ket_qua').innerHTML= `Lương ban đầu ${luong_vao} | Thuế ${thue} | Lương trừ thuế ${luong_rong}`;
+    }
+</script>
+</html>
